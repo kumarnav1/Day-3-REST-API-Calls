@@ -1,5 +1,6 @@
 package com.example.restapicalls.controller;
 
+import com.example.restapicalls.model.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,12 +17,17 @@ public class HelloWorldController {
     }
 
     @RequestMapping(value = {"/twoquery"}, method = RequestMethod.GET)
-    public String sayHello(@RequestParam(value = "fname") String fname, @RequestParam(value = "lname") String lname) {
-        return "Hello  " + fname + "  " + lname + "!";
+    public String sayHello(@RequestParam(value = "fName") String fName, @RequestParam(value = "lName") String lName) {
+        return "Hello  " + fName + "  " + lName + "!";
     }
 
     @GetMapping("/param/{name}")
     public String sayHelloParam(@PathVariable String name){
         return "Hello " + name + "!";
+    }
+
+    @PostMapping("/post")
+    public String sayHello(@RequestBody User user){
+        return "Hello " + user.getFirstName() + " " + user.getLastName() + "!";
     }
 }
